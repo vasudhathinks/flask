@@ -34,8 +34,8 @@ def plotter(symbol, types_list, key):
     for price_type in types_list:
         fig.line(x=data_df.index, y=data_df[price_type].values, legend=price_type,
                  line_width=1, line_alpha=0.5)
+    fig.legend.location = 'bottom_right'
 
-    # show(fig)
     script, div = components(fig)
     return script, div
 
@@ -59,13 +59,22 @@ def index():
 @app.route('/graph', methods=['POST'])
 def graph():
     symbol = request.form['symbol']
-    types = request.form['price_type']
+    price_types = []
+    if request.form.get('Open'):
+        price_types.append('Open')
+    if request.form.get('High'):
+        price_types.append('High')
+    if request.form.get('Low'):
+        price_types.append('Low')
+    if request.form.get('Close'):
+        price_types.append('Close')
+
     app.vars['symbol'] = symbol.upper()
-    app.vars['types'] = types
+    app.vars['types'] = price_types
+    print(app.vars['symbol'], app.vars['types'])
 
     script, div = plotter(app.vars['symbol'], app.vars['types'], api_key)
     return render_template('graph.html', script=script, div=div)
-    # return 'plot to be added'
 
 
 @app.route('/resources')
@@ -74,7 +83,7 @@ def resources():
 
 
 if __name__ == '__main__':
-    # app.run(port=33507)
+    app.run(port=33507)
     # port = int(os.environ.get("PORT", 5000))
     # app.run(host='0.0.0.0', port=port)
-    app.run()
+    # app.run()

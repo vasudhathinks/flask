@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import json
 import io
+import os
 import requests
 from datetime import datetime as dt, timedelta
 import pandas as pd
@@ -73,6 +74,6 @@ def resources():
 
 
 if __name__ == '__main__':
-    app.run(port=33507)
-    # port = int(os.environ.get("PORT", 5000))
-    # app.run(host='0.0.0.0', port=port)
+    # app.run(port=33507)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)

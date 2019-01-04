@@ -34,7 +34,7 @@ def plotter(symbol, types_list, key):
     for price_type in types_list:
         fig.line(x=data_df.index, y=data_df[price_type].values, legend=price_type,
                  line_width=1, line_alpha=0.5)
-    fig.legend.location = 'bottom_right'
+    # fig.legend.location = 'bottom_right'
 
     # show(fig)
     script, div = components(fig)

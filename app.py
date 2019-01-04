@@ -4,8 +4,7 @@ import io
 import requests
 from datetime import datetime as dt, timedelta
 import pandas as pd
-import bokeh
-from bokeh.plotting import figure, show, output_file
+from bokeh.plotting import figure
 from bokeh.embed import components
 
 
@@ -46,9 +45,9 @@ app.vars = {}
 api_key = load_key('key.json')
 
 
-@app.route('/')
-def main():
-    return redirect('/index')
+# @app.route('/')
+# def main():
+#     return redirect('/index')
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -56,15 +55,15 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/plot', methods=['POST'])
-def plot():
+@app.route('/graph', methods=['POST'])
+def graph():
     symbol = request.form['symbol']
     types = request.form['price_type']
     app.vars['symbol'] = symbol.upper()
     app.vars['types'] = types
 
     script, div = plotter(app.vars['symbol'], app.vars['types'], api_key)
-    return render_template('plot.html', script=script, div=div)
+    return render_template('graph.html', script=script, div=div)
     # return 'plot to be added'
 
 

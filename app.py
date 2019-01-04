@@ -45,9 +45,9 @@ app.vars = {}
 api_key = load_key('key.json')
 
 
-# @app.route('/')
-# def main():
-#     return redirect('/index')
+@app.route('/')
+def main():
+    return redirect('/index')
 
 
 @app.route('/index', methods=['GET', 'POST'])

@@ -43,7 +43,6 @@ def plotter(symbol, types_list, key):
 app = Flask(__name__)
 
 app.vars = {}
-api_key = load_key('key.json')
 
 
 @app.route('/')
@@ -58,6 +57,7 @@ def index():
 
 @app.route('/graph', methods=['POST'])
 def graph():
+    api_key = load_key('key.json')
     symbol = request.form['symbol']
     price_types = []
     if request.form.get('Open'):

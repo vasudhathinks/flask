@@ -60,13 +60,13 @@ def index():
 def graph():
     symbol = request.form['symbol']
     price_types = []
-    if request.form['open']:
+    if request.form['open'] == 'checked':
         price_types.append('Open')
-    if request.form['high']:
+    if request.form['high'] == 'checked':
         price_types.append('High')
-    if request.form['low']:
+    if request.form['low'] == 'checked':
         price_types.append('Low')
-    if request.form['close']:
+    if request.form['close'] == 'checked':
         price_types.append('Close')
 
     app.vars['symbol'] = symbol.upper()

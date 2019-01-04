@@ -36,7 +36,6 @@ def plotter(symbol, types_list, key):
                  line_width=1, line_alpha=0.5)
     fig.legend.location = 'bottom_right'
 
-    # show(fig)
     script, div = components(fig)
     return script, div
 
@@ -76,7 +75,6 @@ def graph():
 
     script, div = plotter(app.vars['symbol'], app.vars['types'], api_key)
     return render_template('graph.html', script=script, div=div)
-    # return 'plot to be added'
 
 
 @app.route('/resources')

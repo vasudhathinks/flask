@@ -31,9 +31,9 @@ def plotter(symbol, types_list, key):
                  plot_height=400, plot_width=600,
                  x_axis_label='Time', y_axis_label='Price',
                  x_axis_type='datetime')
-    # for price_type in types_list:
-    fig.line(x=data_df.index, y=data_df[types_list].values, legend=types_list,
-             line_width=1, line_alpha=0.5)
+    for price_type in types_list:
+        fig.line(x=data_df.index, y=data_df[price_type].values, legend=price_type,
+                 line_width=1, line_alpha=0.5)
 
     # show(fig)
     script, div = components(fig)
@@ -59,9 +59,18 @@ def index():
 @app.route('/graph', methods=['POST'])
 def graph():
     symbol = request.form['symbol']
-    types = request.form['price_type']
+    price_types = []
+    if request.form['open']:
+        price_types.append('Open')
+    if request.form['high']:
+        price_types.append('High')
+    if request.form['low']:
+        price_types.append('Low')
+    if request.form['close']:
+        price_types.append('Close')
+
     app.vars['symbol'] = symbol.upper()
-    app.vars['types'] = types
+    app.vars['types'] = price_types
 
     script, div = plotter(app.vars['symbol'], app.vars['types'], api_key)
     return render_template('graph.html', script=script, div=div)

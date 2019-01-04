@@ -31,9 +31,9 @@ def plotter(symbol, types_list, key):
                  plot_height=400, plot_width=600,
                  x_axis_label='Time', y_axis_label='Price',
                  x_axis_type='datetime')
-    for price_type in types_list:
-        fig.line(x=data_df.index, y=data_df[price_type].values, legend=price_type,
-                 line_width=1, line_alpha=0.5)
+    # for price_type in types_list:
+    fig.line(x=data_df.index, y=data_df[types_list].values, legend=types_list,
+             line_width=1, line_alpha=0.5)
 
     # show(fig)
     script, div = components(fig)

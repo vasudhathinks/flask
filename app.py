@@ -45,9 +45,9 @@ app.vars = {}
 api_key = load_key('key.json')
 
 
-@app.route('/')
-def main():
-    return redirect('/index')
+# @app.route('/')
+# def main():
+#     return redirect('/index')
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -73,6 +73,6 @@ def resources():
 
 
 if __name__ == '__main__':
-    # app.run(port=33507)
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(port=33507)
+    # port = int(os.environ.get("PORT", 5000))
+    # app.run(host='0.0.0.0', port=port)

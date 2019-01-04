@@ -55,15 +55,15 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/plot', methods=['POST'])
-def plot():
+@app.route('/graph', methods=['POST'])
+def graph():
     symbol = request.form['symbol']
     types = request.form['price_type']
     app.vars['symbol'] = symbol.upper()
     app.vars['types'] = types
 
     script, div = plotter(app.vars['symbol'], app.vars['types'], api_key)
-    return render_template('plot.html', script=script, div=div)
+    return render_template('graph.html', script=script, div=div)
     # return 'plot to be added'
 
 
@@ -73,6 +73,6 @@ def resources():
 
 
 if __name__ == '__main__':
-    app.run(port=33507)
-    # port = int(os.environ.get("PORT", 5000))
-    # app.run(host='0.0.0.0', port=port)
+    # app.run(port=33507)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)

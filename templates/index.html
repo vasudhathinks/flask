@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Skeleton application demoing Heroku and Flask integration.">
-    <meta name="author" content="@gotoariel">
+    <meta name="description" content="Application demoing Heroku and Flask integration.">
+    <meta name="author" content="@gotoariel and @vasudhathinks">
     <!-- <link rel="icon" href="favicon.ico"> -->
 
     <title>Welcome to the Stock Price Plotter!</title>
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-lg-12 text-left">
             <h2>Enter a stock ticker symbol (e.g. AAPL, AMZN, FB, GOOG, MSFT):</h2>
-            <form id="input" method="post" action="plot">
+            <form id="input" method="post" action="graph">
                 <p>
                     Symbol: <input type="text" name="symbol"/>
                 </p>
@@ -28,7 +28,7 @@
                     <input type="checkbox" name="price_type" value="Close"/> Daily Closing Price<br>
                 </p>
                 <p>
-                    <input type="submit" value="plot"/>
+                    <input type="submit" value="graph"/>
                 </p>
             </form>
 

@@ -4,8 +4,7 @@ import io
 import requests
 from datetime import datetime as dt, timedelta
 import pandas as pd
-import bokeh
-from bokeh.plotting import figure, show, output_file
+from bokeh.plotting import figure
 from bokeh.embed import components
 
 
@@ -48,7 +47,7 @@ api_key = load_key('key.json')
 
 @app.route('/')
 def main():
-    return redirect('/index.html')
+    return redirect('/index')
 
 
 @app.route('/index', methods=['GET', 'POST'])

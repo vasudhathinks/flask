@@ -1,4 +1,4 @@
-### Welcome to the Repo for enigmatic-ridge-47092
+### Welcome to the enigmatic-ridge-47092 repo!
 
 ###### About
 [enigmatic-ridge-47092](http://enigmatic-ridge-47092.herokuapp.com/index) is a 
@@ -10,37 +10,29 @@ Visit [enigmatic-ridge-47092](http://enigmatic-ridge-47092.herokuapp.com/index) 
 give it a try!
 
 ###### Create Your Own
-To set up this app or something similar for yourself, follow these steps:
-1. Clone this repo. The app is self contained with 3 pages as shown in `templates/`.
-1. To run locally, create a file 
-
-## Step 1: Setup and deploy
-- Git clone the existing template repository.
-- `Procfile`, `requirements.txt`, `conda-requirements.txt`, and `runtime.txt`
+To set up this app:
+1. Clone this repo. `Procfile`, `requirements.txt`, `conda-requirements.txt`, and `runtime.txt`
   contain some default settings.
-- There is some boilerplate HTML in `templates/`
-- Create Heroku application with `heroku create <app_name>` or leave blank to
-  auto-generate a name.
-- (Suggested) Use the [conda buildpack](https://github.com/thedataincubator/conda-buildpack).
-  If you choose not to, put all requirements into `requirements.txt`
+1. To access this dataset, [Quandl](https://www.quandl.com/)'s WIKI Prices, 
+[set up an account](https://www.quandl.com/databases/WIKIP/usage/quickstart/api) 
+to get an API key. 
+1. To run locally, create a file in your local repo called `.env` (which is and 
+should be included in `.gitignore`) that contains:
+     ```
+     export quandl_key=<your api key>
+     ```
+     `quandl_key` can be called something else, but that is how it is referenced in `app.py` )  
+1. To run locally, create and activate your virtual environment (to import Flask, etc.) and run:
+     ```commandline
+     source .env
+     python app.py
+     ```  
+1. To run on Heroku, add your `quandl_key` to `Config Vars`. 
 
-  `heroku config:add BUILDPACK_URL=https://github.com/thedataincubator/conda-buildpack.git#py3`
 
-  The advantages of conda include easier virtual environment management and fast package installation from binaries (as compared to the compilation that pip-installed packages sometimes require).
-  One disadvantage is that binaries take up a lot of memory, and the slug pushed to Heroku is limited to 300 MB. Another note is that the conda buildpack is being deprecated in favor of a Docker solution (see [docker branch](https://github.com/thedataincubator/flask-framework/tree/docker) of this repo for an example).
-- Deploy to Heroku: `git push heroku master`
-- You should be able to see your site at `https://<app_name>.herokuapp.com`
-- A useful reference is the Heroku [quickstart guide](https://devcenter.heroku.com/articles/getting-started-with-python-o).
-
-## Step 2: Get data from API and put it in pandas
-- Use the `requests` library to grab some data from a public API. This will
-  often be in JSON format, in which case `simplejson` will be useful.
-- Build in some interactivity by having the user submit a form which determines which data is requested.
-- Create a `pandas` dataframe with the data.
-
-## Step 3: Use Bokeh to plot pandas data
-- Create a Bokeh plot from the dataframe.
-- Consult the Bokeh [documentation](http://bokeh.pydata.org/en/latest/docs/user_guide/embed.html)
-  and [examples](https://github.com/bokeh/bokeh/tree/master/examples/embed).
-- Make the plot visible on your website through embedded HTML or other methods - this is where Flask comes in to manage the interactivity and display the desired content.
-- Some good references for Flask: [This article](https://realpython.com/blog/python/python-web-applications-with-flask-part-i/), especially the links in "Starting off", and [this tutorial](https://github.com/bev-a-tron/MyFlaskTutorial).
+###### Additional Info
+- For Heroku, check out this guide for using the [Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-python).
+- When creating the app with `heroku create`, use 
+  ```
+  heroku create --buildpack https://github.com/thedataincubator/conda-buildpack.git#py3
+  ```

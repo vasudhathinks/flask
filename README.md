@@ -1,15 +1,15 @@
-### Welcome to the enigmatic-ridge-47092 repo!
+## Welcome to the enigmatic-ridge-47092 repo!
 
-###### About
+#### About
 [enigmatic-ridge-47092](http://enigmatic-ridge-47092.herokuapp.com/index) is a 
 Flask app on Heroku that returns the daily stock prices over the last ~1,000 days 
 for a given stock ticker/symbol as sourced from [Quandl](https://www.quandl.com/). 
 
-###### Try It Out
+#### Try It Out
 Visit [enigmatic-ridge-47092](http://enigmatic-ridge-47092.herokuapp.com/index) to 
 give it a try!
 
-###### Create Your Own
+#### Create Your Own
 To set up this app:
 1. Clone this repo. `Procfile`, `requirements.txt`, `conda-requirements.txt`, and `runtime.txt`
   contain some default settings.
@@ -30,8 +30,9 @@ should be included in `.gitignore`) that contains:
 1. To run on Heroku, add your `quandl_key` to `Config Vars`. 
 
 
-###### Additional Info
-- For Heroku, check out this guide for using the [Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-python).
+#### Additional Info
+- For Heroku, check out this guide for using the [Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-python) 
+with Python.
 - When creating the app with `heroku create`, use 
   ```
   heroku create --buildpack https://github.com/thedataincubator/conda-buildpack.git#py3

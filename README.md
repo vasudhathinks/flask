@@ -1,13 +1,18 @@
-# Flask on Heroku
+### Welcome to the Repo for enigmatic-ridge-47092
 
-This project is intended to help you tie together some important concepts and
-technologies from the 12-day course, including Git, Flask, JSON, Pandas,
-Requests, Heroku, and Bokeh for visualization.
+###### About
+[enigmatic-ridge-47092](http://enigmatic-ridge-47092.herokuapp.com/index) is a 
+Flask app on Heroku that returns the daily stock prices over the last ~1,000 days 
+for a given stock ticker/symbol as sourced from [Quandl](https://www.quandl.com/). 
 
-The repository contains a basic template for a Flask configuration that will
-work on Heroku.
+###### Try It Out
+Visit [enigmatic-ridge-47092](http://enigmatic-ridge-47092.herokuapp.com/index) to 
+give it a try!
 
-A [finished example](https://lemurian.herokuapp.com) that demonstrates some basic functionality.
+###### Create Your Own
+To set up this app or something similar for yourself, follow these steps:
+1. Clone this repo. The app is self contained with 3 pages as shown in `templates/`.
+1. To run locally, create a file 
 
 ## Step 1: Setup and deploy
 - Git clone the existing template repository.

@@ -9,13 +9,6 @@ from bokeh.plotting import figure
 from bokeh.embed import components
 
 
-# Load key (Sort how to make private)
-def load_key(key_file):
-    with open(key_file) as json_data:
-        keys_dict = json.load(json_data)
-    return keys_dict['api_key']
-
-
 def plotter(symbol, types_list, key):
     end = dt.today().strftime("%Y-%m-%d")
     start = (dt.today() - timedelta(days=1000)).strftime("%Y-%m-%d")
@@ -27,7 +20,7 @@ def plotter(symbol, types_list, key):
     data_df = pd.read_csv(io.StringIO(data_request.content.decode('utf-8')))
     data_df = data_df.set_index(pd.DatetimeIndex(data_df['Date']))
 
-    fig = figure(title='Daily Prices over the last ~1,000 days/~3 years for ' + symbol,
+    fig = figure(title='Daily Prices over the last ~1,000 days/~3 years (source: Quandl) for ' + symbol,
                  plot_height=400, plot_width=600,
                  x_axis_label='Time', y_axis_label='Price',
                  x_axis_type='datetime')
@@ -57,7 +50,7 @@ def index():
 
 @app.route('/graph', methods=['POST'])
 def graph():
-    api_key = load_key('key.json')
+    quandl_key = os.environ['quandl_key']
     symbol = request.form['symbol']
     price_types = []
     if request.form.get('Open'):
@@ -73,7 +66,7 @@ def graph():
     app.vars['types'] = price_types
     print(app.vars['symbol'], app.vars['types'])
 
-    script, div = plotter(app.vars['symbol'], app.vars['types'], api_key)
+    script, div = plotter(app.vars['symbol'], app.vars['types'], quandl_key)
     return render_template('graph.html', script=script, div=div)
 
 
@@ -83,7 +76,5 @@ def resources():
 
 
 if __name__ == '__main__':
-    # app.run(port=33507)
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-    # app.run()

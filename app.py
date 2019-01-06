@@ -20,7 +20,7 @@ def plotter(symbol, types_list, key):
     data_df = pd.read_csv(io.StringIO(data_request.content.decode('utf-8')))
     data_df = data_df.set_index(pd.DatetimeIndex(data_df['Date']))
 
-    fig = figure(title='Daily Prices over the last ~1,000 days/~3 years for ' + symbol,
+    fig = figure(title='Daily Prices over the last ~1,000 days/~3 years (source: Quandl) for ' + symbol,
                  plot_height=400, plot_width=600,
                  x_axis_label='Time', y_axis_label='Price',
                  x_axis_type='datetime')
@@ -50,7 +50,7 @@ def index():
 
 @app.route('/graph', methods=['POST'])
 def graph():
-    quandl_api_key = os.environ['quandl_key']
+    quandl_key = os.environ['quandl_key']
     symbol = request.form['symbol']
     price_types = []
     if request.form.get('Open'):
@@ -66,7 +66,7 @@ def graph():
     app.vars['types'] = price_types
     print(app.vars['symbol'], app.vars['types'])
 
-    script, div = plotter(app.vars['symbol'], app.vars['types'], quandl_api_key)
+    script, div = plotter(app.vars['symbol'], app.vars['types'], quandl_key)
     return render_template('graph.html', script=script, div=div)
 
 

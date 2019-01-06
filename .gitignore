@@ -1,3 +1,4 @@
+.env
 key.json
 scratch.py
 venv/*
